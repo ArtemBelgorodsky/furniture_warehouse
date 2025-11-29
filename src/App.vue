@@ -1,5 +1,8 @@
 <template>
-  <div class="min-h-screen bg-background text-foreground">
+  <div v-if="!isLoggedIn" class="min-h-screen bg-background text-foreground">
+    <Login @loginSuccess="isLoggedIn = true" />
+  </div>
+  <div v-else class="min-h-screen bg-background text-foreground">
     <nav class="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
       <div class="flex h-16 items-center justify-between px-6">
         <div class="flex items-center gap-3">
@@ -12,13 +15,13 @@
         </div>
 
         <div class="flex items-center gap-6">
-          <router-link 
-            v-for="link in navLinks" 
+          <router-link
+            v-for="link in navLinks"
             :key="link.path"
             :to="link.path"
             class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
-            :class="$route.path === link.path 
-              ? 'bg-primary text-white' 
+            :class="$route.path === link.path
+              ? 'bg-primary text-white'
               : 'text-muted-foreground hover:bg-secondary'"
           >
             <component :is="link.icon" class="h-4 w-4" />
@@ -26,7 +29,7 @@
           </router-link>
         </div>
 
-        
+
       </div>
     </nav>
 
@@ -37,8 +40,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import Login from './views/Login.vue'
 import {
   BarChart3,
   Package,
@@ -49,6 +53,7 @@ import {
 } from 'lucide-vue-next'
 
 const route = useRoute()
+const isLoggedIn = ref(false)
 
 const navLinks = [
   { path: '/', label: 'Панель', icon: BarChart3 },
