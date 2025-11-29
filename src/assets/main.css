@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-card: #f9f9f9;
+  --color-card-foreground: #000000;
+  --color-primary: #dc2626;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f3f4f6;
+  --color-secondary-foreground: #000000;
+  --color-accent: #dc2626;
+  --color-accent-foreground: #ffffff;
+  --color-muted: #9ca3af;
+  --color-muted-foreground: #6b7280;
+  --color-border: #d1d5db;
+  --color-input: #ffffff;
+  --color-ring: #dc2626;
+  --color-success: #dc2626;
+  --color-error: #dc2626;
+  --color-warning: #dc2626;
+  --color-info: #dc2626;
+  --radius: 0.375rem;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif;
+}
+
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground;
+}
+
+input,
+textarea,
+select {
+  @apply bg-input text-foreground;
+}
+
+button {
+  @apply transition-colors;
+}
